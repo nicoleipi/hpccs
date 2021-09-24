@@ -8,7 +8,7 @@
 #  For Debug CCFLAGS= -g -O3 -std=c++0x -fopenmp -march=native -fma -mtune=native -ffast-math -fopt-info-vec-optimized
 SRC_DIR=src
 CCFLAGS= -O3 -std=c++0x -fopenmp -mtune=native -march=native -mfma -ffast-math
-INC_DIR = ${HOME}/HPCCS
+INC_DIR = /c/Users/pinic/Documents/REHS21/HPCCS
 CC=g++
 LDFLAGS=
 OBJ= molecule.o atomMLJ.o fhandler.o globals.o hpccs.o mobil2.o potentialHe.o potentialN2.o rotate.o diffeq_deriv.o gsang.o mt.o
