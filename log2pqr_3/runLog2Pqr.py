@@ -1,3 +1,9 @@
+# 2020-03-02
+
+# Kiyoto Aramis Tanemura
+
+# Provided a directory, convert all gaussian log files to PQR format.
+
 import os
 from log2Pqr import runLog2Pqr
 
