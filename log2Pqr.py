@@ -3,7 +3,7 @@
 #Kiyoto Aramis Tanemura
 
 #Previously, we drafted a code to convert on Gaussian log file to PQR format. I make a generalized code into a function so that it can  be iterated in a separate script
-# Modified 2020-05-18 by KAT. The first iteration of code ran for most files, yet failed on exceptions, resulting in only a partial completion of the task of converting Gaussian log files to PQR format. 
+# Modified 2020-05-18 by KAT. The first iteration of code ran for most files, yet failed on exceptions, resulting in only a partial completion of the task of converting Gaussian log files to PQR format.
 # I reorganize the code by defining individual functions to improve the modularity of script.
 
 import os
@@ -27,7 +27,7 @@ def get_info_from_log(file_with_path):
     chargeList = []
     i = mullikenIndex + 2
     while 'Sum' not in infile[i]:
-        chargeList.append(infile[i].split()[:3])
+        chargeList.append(infile[i].split()[:3])# modified :3 to 2
         i += 1
 
     # next find atom info. The atom info is in a paragraph in which the line break can influence the presence of the keyword. Therefore we merge the entire file contents to one string.
@@ -41,7 +41,7 @@ def get_info_from_log(file_with_path):
     atomInfo = contents[atomInfoIndex:atomInfoEnd]
     atomInfo = atomInfo.split('\\')
     atomInfo = [x.split(',') for x in atomInfo]
-    atomInfo = [x for x in atomInfo if len(x) == 5]
+    atomInfo = [x for x in atomInfo if len(x) == 4]
     return chargeList, atomInfo
 
 def aggregate_data(chargeList, atomInfo):
@@ -51,9 +51,9 @@ def aggregate_data(chargeList, atomInfo):
     atomName = [x[1] for x in chargeList]
     residueID = ['MOL'] * len(atomInfo)
     chainID = [1] * len(atomInfo)
-    xcoord = [str(round(float(x[2]), 2)) for x in atomInfo]
-    ycoord = [str(round(float(x[3]), 2)) for x in atomInfo]
-    zcoord = [str(round(float(x[4]), 2)) for x in atomInfo]
+    xcoord = [str(round(float(x[1]), 2)) for x in atomInfo]
+    ycoord = [str(round(float(x[2]), 2)) for x in atomInfo]
+    zcoord = [str(round(float(x[3]), 2)) for x in atomInfo]
     MullikenCharge = [str(round(float(x[2]), 4)) for x in chargeList]
     # Add space after nonnegative valued coordinates so that decimal points match
     for i in range(len(xcoord)):

@@ -13,7 +13,7 @@ outpath = './'
 fileList = [x for x in os.listdir(inpath) if x[-3:] == 'log']
 
 for theFile in fileList:
-    outputName = theFile[theFile.index('conf-'):-3] + 'pqr'
+    outputName = theFile.replace('log', 'pqr')
     runLog2Pqr(inpath + theFile, outpath + outputName)
 
 message = str(len(fileList)) + ' log files considered\n' + str(len([x for x in os.listdir(outpath) if x[-3:] == 'pqr'])) + ' PQR files present'
